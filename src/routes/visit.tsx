@@ -1,0 +1,9 @@
+import { createFileRoute } from '@tanstack/react-router';
+import { MapPin, ArrowUpRight } from 'lucide-react';
+import { business, pageHead } from '@/lib/business';
+import { DirectionsButton } from '@/components/site-shell';
+
+export const Route = createFileRoute('/visit')({ component: Visit, head: () => pageHead('Visit us on Kuykendahl Road', 'Get directions to Dry Clean Super Center, 12525 Kuykendahl Rd, Houston, TX 77090. Confirm prices and availability in store. Independent website concept.', '/visit') });
+function Visit() {
+  return <><section className="page-intro"><div className="site-width reveal"><p className="eyebrow text-primary">Houston, Texas</p><h1>Right here on Kuykendahl.</h1><p className="section-copy max-w-xl">Find Dry Clean Super Center at the address below. Bring your pieces to the store to confirm cleaning requirements, pricing and availability.</p></div></section><section className="section"><div className="site-width editorial-layout"><div><p className="eyebrow text-primary mb-5">Visit us</p><h2 className="address-heading">Dry Clean Super Center</h2><address className="not-italic section-copy mt-6 mb-8">{business.address}<br/>{business.city}<br/>United States</address><DirectionsButton/><p className="fine-print mt-7 max-w-sm">Opening hours and contact details are not verified for this concept. Please confirm availability before making a special trip.</p></div><a className="map-panel group" href={business.directions} target="_blank" rel="noopener noreferrer" aria-label="Open directions to Dry Clean Super Center in Apple Maps"><MapPin className="text-primary mb-7" size={46} strokeWidth={1}/><p className="eyebrow text-primary mb-3">12525 Kuykendahl Road</p><p className="font-display text-[38px]">Houston, Texas</p><span className="flex items-center gap-2 text-[11px] text-muted-foreground mt-6 group-hover:text-primary transition-colors">Open in Apple Maps <ArrowUpRight size={15}/></span></a></div></section></>;
+}
