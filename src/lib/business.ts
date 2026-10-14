@@ -2,11 +2,13 @@ export const business = {
   name: 'Dry Clean Super Center',
   address: '12525 Kuykendahl Rd',
   city: 'Houston, TX 77090',
+  hours: [['Monday – Friday', '7 AM – 7 PM'], ['Saturday', '8 AM – 5 PM'], ['Sunday', 'Closed']] as const,
   directions: 'https://maps.apple/p/tqPG-CG~A.fyB5',
 };
 
 export const priceItems = [
   { id: 'regular', name: 'Regular dry cleaning', detail: 'REG ONLY · excludes suede, leather & gowns', min: 349, max: 349 },
+  { id: 'suit', name: 'Two-piece suit', detail: 'Dry cleaning', min: 798, max: 798 },
   { id: 'shirts', name: 'Cotton button down shirts', detail: 'Laundry', min: 289, max: 289 },
   { id: 'pants', name: 'Jeans, pants & skirts', detail: '', min: 389, max: 389 },
   { id: 'shorts', name: 'Shorts', detail: '', min: 379, max: 379 },
