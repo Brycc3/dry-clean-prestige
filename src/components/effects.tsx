@@ -1,33 +1,20 @@
 import { useEffect, useRef, useState, type ReactNode, type KeyboardEvent, type PointerEvent } from 'react';
 import { money } from '@/lib/business';
 
-/* 1) Hanging garment conveyor: pure CSS/SVG, seamless loop (two identical sets), pauses on hover/focus. */
-type Garment = { kind: 'shirt' | 'pants' | 'dress' | 'jacket'; tone: string };
-const garments: Garment[] = [
-  { kind: 'shirt', tone: 'var(--garment-1)' }, { kind: 'pants', tone: 'var(--garment-2)' }, { kind: 'jacket', tone: 'var(--garment-3)' },
-  { kind: 'dress', tone: 'var(--garment-4)' }, { kind: 'shirt', tone: 'var(--garment-5)' }, { kind: 'pants', tone: 'var(--garment-3)' },
-  { kind: 'shirt', tone: 'var(--garment-2)' }, { kind: 'dress', tone: 'var(--garment-1)' },
-];
-function GarmentSvg({ kind, tone }: Garment) {
-  const body = {
-    shirt: <path d="M14 30 L32 22 L40 30 L48 22 L66 30 L72 50 L62 54 L60 44 L60 96 L20 96 L20 44 L18 54 L8 50 Z" />,
-    pants: <path d="M20 26 H60 L64 98 H46 L40 50 L34 98 H16 Z" />,
-    dress: <path d="M28 24 H52 L54 44 L70 98 H10 L26 44 Z" />,
-    jacket: <path d="M12 30 L30 22 L40 40 L50 22 L68 30 L70 98 H10 Z" />,
-  }[kind];
-  return <svg viewBox="0 0 80 100" className="garment-svg" aria-hidden="true">
-    <path d="M40 2 q6 0 6 6 q0 5 -6 7 V18" fill="none" stroke="var(--hanger)" strokeWidth="2.5" strokeLinecap="round" />
-    <path d="M10 26 L40 16 L70 26" fill="none" stroke="var(--hanger)" strokeWidth="3" strokeLinecap="round" />
-    <g fill={tone} stroke="var(--garment-line)" strokeWidth="1.5" strokeLinejoin="round">{body}</g>
-    {kind === 'shirt' && <path d="M40 30 V92" stroke="var(--garment-line)" strokeWidth="1" strokeDasharray="2 6" />}
-    <rect x="34" y="70" width="12" height="8" rx="1" fill="var(--tag)" opacity=".9" />
-  </svg>;
-}
+/* 1) Hanging garment conveyor: photorealistic cutouts, seamless loop (two identical sets), pauses on hover/focus. */
+import shirtWhite from '@/assets/garment-shirt.png';
+import shirtBlue from '@/assets/garment-shirt-blue.png';
+import pants from '@/assets/garment-pants.png';
+import jacket from '@/assets/garment-jacket.png';
+import dress from '@/assets/garment-dress.png';
+const garments = [shirtWhite, pants, jacket, dress, shirtBlue, pants, jacket, shirtWhite, dress, shirtBlue];
 export function GarmentConveyor() {
-  const set = garments.map((g, i) => <li key={i} className="garment" style={{ animationDelay: `${-i * 0.37}s` }}><GarmentSvg {...g} /></li>);
-  return <div className="conveyor" role="img" aria-label="Illustration: garments on hangers moving along a dry cleaning conveyor" tabIndex={0}>
+  const item = (src: string, i: number, dup: boolean) => <li key={`${dup ? 'b' : 'a'}${i}`} className="garment" aria-hidden={dup || undefined} style={{ animationDelay: `${-i * 0.37}s` }}>
+    <img src={src} alt="" width={672} height={992} loading="lazy" decoding="async" draggable={false} className="garment-img" />
+  </li>;
+  return <div className="conveyor" role="img" aria-label="Shirts, trousers, jackets and dresses on hangers moving along a dry cleaning conveyor rail (stock-style images, not store photos)" tabIndex={0}>
     <div className="conveyor-rail" />
-    <ul className="conveyor-track">{set}{set.map((el, i) => <li key={`b${i}`} className="garment" aria-hidden="true" style={el.props.style}>{el.props.children}</li>)}</ul>
+    <ul className="conveyor-track">{garments.map((g, i) => item(g, i, false))}{garments.map((g, i) => item(g, i, true))}</ul>
   </div>;
 }
 
