@@ -9,5 +9,5 @@ export const services = [
   { name: 'Leather cleaning', icon: Sparkles, description: 'Available according to the business sign. Leather and suede are excluded from regular dry cleaning pricing.' },
 ];
 export function ServiceList({ limit }: { limit?: number }) {
-  return <div className="service-grid">{services.slice(0, limit).map((service, index) => <article className="service-item" key={service.name}><div className="flex items-center justify-between"><service.icon className="service-icon"/><span className="eyebrow text-paper-muted">0{index + 1}</span></div><h3>{service.name}</h3><p>{service.description}</p></article>)}</div>;
+  return <div className="service-grid">{services.slice(0, limit).map((service) => <article className="service-item" key={service.name}><div className="flex items-center justify-between"><service.icon className="service-icon"/></div><h3>{service.name}</h3><p>{service.description}</p></article>)}</div>;
 }
