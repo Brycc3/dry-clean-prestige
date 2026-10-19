@@ -253,12 +253,12 @@ body { margin: 0; font-size: 16px; }
 
 /* ===== Effects ===== */
 :root { --garment-1: oklch(0.98 0.005 90); --garment-2: oklch(0.45 0.06 250); --garment-3: oklch(0.32 0.02 250); --garment-4: oklch(0.72 0.08 25); --garment-5: oklch(0.82 0.05 230); --garment-line: oklch(0.55 0.02 250); --hanger: oklch(0.6 0.01 250); --tag: oklch(0.85 0.12 90); --steam: oklch(0.85 0.01 250); --press-top: oklch(0.6 0.02 250); --press-base: oklch(0.42 0.02 250); --stain: oklch(0.5 0.08 60); }
-.conveyor { position: relative; overflow: hidden; padding-top: 14px; height: 170px; background: var(--card); border-block: 1px solid var(--border); -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
-.conveyor-rail { position: absolute; top: 14px; inset-inline: 0; height: 5px; background: var(--hanger); border-radius: 3px; }
-.conveyor-track { display: flex; --g: 28px; gap: var(--g); width: max-content; padding-left: var(--g); animation: conveyor 32s linear infinite; will-change: transform; }
+.conveyor { position: relative; overflow: hidden; padding-top: 12px; height: 230px; background: var(--card); border-block: 1px solid var(--border); -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+.conveyor-rail { position: absolute; z-index: 2; top: 20px; inset-inline: 0; height: 6px; border-radius: 3px; background: linear-gradient(180deg, color-mix(in oklab, var(--hanger) 40%, var(--card)), var(--hanger) 55%, color-mix(in oklab, var(--hanger) 70%, var(--foreground))); box-shadow: 0 2px 3px color-mix(in oklab, var(--foreground) 18%, transparent); }
+.conveyor-track { display: flex; --g: 28px; gap: var(--g); width: max-content; padding-left: var(--g); animation: conveyor 48s linear infinite; will-change: transform; }
 .conveyor:hover .conveyor-track, .conveyor:focus-visible .conveyor-track { animation-play-state: paused; }
-.garment { flex: none; width: 96px; transform-origin: 50% 0; animation: sway 2.6s ease-in-out infinite; }
-.garment-svg { width: 96px; height: 130px; display: block; filter: drop-shadow(0 4px 4px color-mix(in oklab, var(--foreground) 12%, transparent)); }
+.garment { flex: none; width: 140px; margin-top: 2px; transform-origin: 50% 0; animation: sway 2.6s ease-in-out infinite; }
+.garment-img { width: 140px; height: auto; aspect-ratio: 672 / 992; object-fit: contain; display: block; user-select: none; filter: drop-shadow(0 4px 4px color-mix(in oklab, var(--foreground) 12%, transparent)); }
 @keyframes conveyor { to { transform: translateX(-50%); } }
 @keyframes sway { 0%,100% { transform: rotate(-2deg); } 50% { transform: rotate(2deg); } }
 .press-figure { max-width: 320px; }
@@ -288,5 +288,5 @@ body { margin: 0; font-size: 16px; }
 .calculator button:not(:disabled):active { transform: scale(.9); }
 .calculator-row { transition: background-color .2s; }
 .calculator-row:hover { background: color-mix(in oklab, var(--accent) 50%, transparent); }
-@media (max-width: 860px) { .effects-row { grid-template-columns: 1fr; gap: 32px; } .conveyor { height: 140px; } .garment, .garment-svg { width: 74px; } .garment-svg { height: 100px; } .conveyor-track { --g: 18px; } }
-@media (prefers-reduced-motion: reduce) { .scroll-reveal { opacity: 1; transform: none; } .conveyor-track { animation: none !important; } }
+@media (max-width: 860px) { .effects-row { grid-template-columns: 1fr; gap: 32px; } .conveyor { height: 170px; } .garment, .garment-img { width: 100px; } .conveyor-track { --g: 10px; } }
+@media (prefers-reduced-motion: reduce) { .scroll-reveal { opacity: 1; transform: none; } .conveyor-track { animation: none !important; } .garment { animation: none !important; } }
