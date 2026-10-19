@@ -13,5 +13,5 @@
 - Keep shared navigation and footer in SiteShell mounted by the root route; each public content page owns its leaf route and metadata so navigation and search previews remain distinct.
 - Keep sign-based pricing and integer-cent estimate math in src/lib/business.ts; calculate a min/max range for variable-price items to avoid presenting an unsupported fixed quote.
 - Use semantic tokens and editorial styles in src/styles.css with Button variants for controls; this keeps the presentation consistent across pages.
-- Render fallback imagery through EditorialMedia and accept optional approved video sources without autoplay; this supports future business footage while respecting motion and bandwidth preferences.
+- Render store photos and footage through EditorialMedia with posters, preload="none" and tap-to-play; this keeps real videos lightweight and respects motion and bandwidth preferences.
 - Keep this concept frontend-only with no booking, payment or persistent customer records; the site offers information, directions and transient estimates only.

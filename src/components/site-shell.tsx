@@ -24,11 +24,11 @@ export function SiteShell({ children }: { children: ReactNode }) {
       <div className="mobile-nav"><Button variant="ghost" size="icon" aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} aria-controls="mobile-menu" onClick={() => setOpen(!open)}>{open ? <X/> : <Menu/>}</Button></div>
     </div>{open && <nav id="mobile-menu" className="mobile-menu" aria-label="Mobile navigation">{navigation.map(item => <Link key={item.to} to={item.to} activeOptions={{ exact: true }} className="nav-link">{item.label}</Link>)}</nav>}</header>
     <main id="main">{children}</main>
-    <footer className="footer"><div className="site-width"><div className="footer-top"><Brand/><nav className="footer-nav" aria-label="Footer navigation">{navigation.map(item => <Link key={item.to} to={item.to}>{item.label}</Link>)}</nav><a href={business.directions} target="_blank" rel="noopener noreferrer" className="flex items-start gap-3 text-[11px] leading-6 text-muted-foreground"><MapPin size={17} className="text-primary mt-1"/><span>{business.address}<br/>{business.city}</span></a></div>
-    <div className="footer-bottom"><p>Independent website concept, not affiliated with or approved by the business</p><p>Editorial imagery · not photographs of the business</p></div></div></footer>
+    <footer className="footer"><div className="site-width"><div className="footer-top"><Brand/><nav className="footer-nav" aria-label="Footer navigation">{navigation.map(item => <Link key={item.to} to={item.to}>{item.label}</Link>)}</nav><a href={business.directions} target="_blank" rel="noopener noreferrer" className="flex items-start gap-3 text-[15px] leading-6 text-muted-foreground hover:text-primary"><MapPin size={17} className="text-primary mt-1"/><span>{business.address}<br/>{business.city}</span></a></div>
+    <div className="footer-bottom"><p>Independent website concept, not affiliated with or approved by the business</p><p>Photos and video show the actual store. No official logo file supplied; wordmark is based on the storefront sign.</p></div></div></footer>
   </>;
 }
 
 export function VisitBand() {
-  return <section className="visit-band"><div className="site-width visit-inner"><div><p className="eyebrow text-primary mb-3">Your neighborhood dry cleaner</p><h2 className="section-heading text-[42px]">Visit us on Kuykendahl.</h2><p className="section-copy mt-3">{business.address} · {business.city}</p></div><DirectionsButton/></div></section>;
+  return <section className="visit-band"><div className="site-width visit-inner"><div><p className="eyebrow mb-2">Your neighborhood dry cleaner</p><h2 className="section-heading">Come by the store on Kuykendahl.</h2><p className="mt-2 text-[17px]">{business.address} · {business.city}</p></div><DirectionsButton/></div></section>;
 }
