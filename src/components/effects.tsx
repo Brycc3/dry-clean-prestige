@@ -58,7 +58,7 @@ export function StainSlider() {
   const onKey = (e: KeyboardEvent) => {
     const step = e.shiftKey ? 10 : 2;
     const map: Record<string, number> = { ArrowLeft: pos - step, ArrowDown: pos - step, ArrowRight: pos + step, ArrowUp: pos + step, Home: 0, End: 100 };
-    if (e.key in map) { e.preventDefault(); setPos(Math.max(0, Math.min(100, map[e.key]))); }
+    if (e.key in map) { e.preventDefault(); setPos(Math.max(0, Math.min(100, map[e.key] ?? pos))); }
   };
   const shirt = (stained: boolean) => <svg viewBox="0 0 300 200" className="stain-svg" aria-hidden="true">
     <rect width="300" height="200" fill="var(--paper)" />
@@ -84,7 +84,7 @@ export function Reveal({ children, index = 0, className = '' }: { children: Reac
   useEffect(() => {
     const el = ref.current; if (!el) return;
     if (!('IntersectionObserver' in window)) { setShown(true); return; }
-    const io = new IntersectionObserver(([entry]) => { if (entry.isIntersecting) { setShown(true); io.disconnect(); } }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    const io = new IntersectionObserver(([entry]) => { if (entry?.isIntersecting) { setShown(true); io.disconnect(); } }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
     io.observe(el); return () => io.disconnect();
   }, []);
   return <div ref={ref} className={`scroll-reveal ${shown ? 'is-visible' : ''} ${className}`} style={{ transitionDelay: `${index * 90}ms` }}>{children}</div>;
