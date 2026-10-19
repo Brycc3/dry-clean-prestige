@@ -290,3 +290,12 @@ body { margin: 0; font-size: 16px; }
 .calculator-row:hover { background: color-mix(in oklab, var(--accent) 50%, transparent); }
 @media (max-width: 860px) { .effects-row { grid-template-columns: 1fr; gap: 32px; } .conveyor { height: 170px; } .garment, .garment-img { width: 100px; } .conveyor-track { --g: 10px; } }
 @media (prefers-reduced-motion: reduce) { .scroll-reveal { opacity: 1; transform: none; } .conveyor-track { animation: none !important; } .garment { animation: none !important; } }
+
+/* Real-photo press + before/after pair (static, no animation) */
+.effects-row { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); }
+.photo-card { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); background: var(--card); }
+.photo-card img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.press-photo { aspect-ratio: 4 / 3; }
+.ba-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 0; }
+.ba-pair figure { margin: 0; position: relative; aspect-ratio: 1 / 1; }
+.ba-tag { position: absolute; top: 10px; left: 10px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; background: var(--card); color: var(--foreground); padding: 3px 8px; border-radius: 4px; }
