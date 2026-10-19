@@ -9,17 +9,17 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        gold: "rounded-none border border-primary bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-6 text-[10px] uppercase tracking-[1.4px]",
-        editorial: "rounded-none border border-border bg-transparent text-foreground hover:bg-foreground/5 h-12 px-6 text-[10px] uppercase tracking-[1.4px]",
-        ink: "rounded-none border border-ink text-ink bg-transparent hover:bg-ink/5 h-12 px-6 text-[10px] uppercase tracking-[1.4px]",
-        quantity: "rounded-none bg-transparent text-ink hover:bg-ink/10 h-8 w-8 p-0",
+        gold: "rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-5 text-[15px] font-semibold",
+        editorial: "rounded-lg border border-input bg-card text-foreground hover:bg-muted h-12 px-5 text-[15px] font-semibold",
+        ink: "rounded-lg border border-input bg-card text-ink hover:bg-muted h-12 px-5 text-[15px] font-semibold",
+        quantity: "rounded-none bg-transparent text-ink hover:bg-muted h-[38px] w-[38px] p-0",
         default: "bg-primary text-primary-foreground shadow hover:bg-primary/90",
         destructive: "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
         outline:
           "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground",
         secondary: "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
+        link: "rounded-lg border border-input bg-card text-ink hover:bg-muted h-12 px-5 text-[15px] font-semibold",
       },
       size: {
         default: "h-9 px-4 py-2",
