@@ -12,7 +12,7 @@ export function GarmentConveyor() {
   const item = (src: string, i: number, dup: boolean) => <li key={`${dup ? 'b' : 'a'}${i}`} className="garment" aria-hidden={dup || undefined} style={{ animationDelay: `${-i * 0.37}s` }}>
     <img src={src} alt="" width={672} height={992} loading="lazy" decoding="async" draggable={false} className="garment-img" />
   </li>;
-  return <div className="conveyor" role="img" aria-label="Shirts, trousers, jackets and dresses on hangers moving along a dry cleaning conveyor rail (stock-style images, not store photos)" tabIndex={0}>
+  return <div className="conveyor" role="img" aria-label="Shirts, trousers, jackets and dresses on hangers moving along a dry cleaning conveyor rail (computer-generated product-style images, not photos from this store)" tabIndex={0}>
     <div className="conveyor-rail" />
     <ul className="conveyor-track">{garments.map((g, i) => item(g, i, false))}{garments.map((g, i) => item(g, i, true))}</ul>
   </div>;
