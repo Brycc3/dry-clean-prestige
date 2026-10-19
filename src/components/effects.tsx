@@ -2,11 +2,11 @@ import { useEffect, useRef, useState, type ReactNode, type KeyboardEvent, type P
 import { money } from '@/lib/business';
 
 /* 1) Hanging garment conveyor: photorealistic cutouts, seamless loop (two identical sets), pauses on hover/focus. */
-import shirtWhite from '@/assets/garment-shirt.png';
-import shirtBlue from '@/assets/garment-shirt-blue.png';
-import pants from '@/assets/garment-pants.png';
-import jacket from '@/assets/garment-jacket.png';
-import dress from '@/assets/garment-dress.png';
+import shirtWhite from '@/assets/garment-shirt.webp';
+import shirtBlue from '@/assets/garment-shirt-blue.webp';
+import pants from '@/assets/garment-pants.webp';
+import jacket from '@/assets/garment-jacket.webp';
+import dress from '@/assets/garment-dress.webp';
 const garments = [shirtWhite, pants, jacket, dress, shirtBlue, pants, jacket, shirtWhite, dress, shirtBlue];
 export function GarmentConveyor() {
   const item = (src: string, i: number, dup: boolean) => <li key={`${dup ? 'b' : 'a'}${i}`} className="garment" aria-hidden={dup || undefined} style={{ animationDelay: `${-i * 0.37}s` }}>
