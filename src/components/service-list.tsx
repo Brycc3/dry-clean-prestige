@@ -1,4 +1,5 @@
 import { Reveal } from '@/components/effects';
+import { Tilt } from '@/components/depth';
 import { Shirt, WashingMachine, BedDouble, Scissors, Layers, Sparkles } from 'lucide-react';
 
 export const services = [
@@ -10,5 +11,5 @@ export const services = [
   { name: 'Leather cleaning', icon: Sparkles, description: 'Available according to the business sign. Leather and suede are excluded from regular dry cleaning pricing.' },
 ];
 export function ServiceList({ limit }: { limit?: number }) {
-  return <div className="service-grid">{services.slice(0, limit).map((service, i) => <Reveal key={service.name} index={i}><article className="service-item"><div className="flex items-center justify-between"><service.icon className="service-icon"/></div><h3>{service.name}</h3><p>{service.description}</p></article></Reveal>)}</div>;
+  return <div className="service-grid">{services.slice(0, limit).map((service, i) => <Reveal key={service.name} index={i}><Tilt tabIndex={0} aria-label={service.name}><article className="service-item"><div className="flex items-center justify-between"><service.icon className="service-icon"/></div><h3>{service.name}</h3><p>{service.description}</p></article></Tilt></Reveal>)}</div>;
 }
