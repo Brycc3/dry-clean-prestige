@@ -299,3 +299,48 @@ body { margin: 0; font-size: 16px; }
 .ba-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 0; }
 .ba-pair figure { margin: 0; position: relative; aspect-ratio: 1 / 1; }
 .ba-tag { position: absolute; top: 10px; left: 10px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; background: var(--card); color: var(--foreground); padding: 3px 8px; border-radius: 4px; }
+
+/* ===== 3D depth effects (CSS perspective; pointer + scroll driven; off for reduced motion) ===== */
+.conveyor { height: 270px; padding-top: 0; perspective: 900px; --px: 0; }
+.conveyor-layer { position: absolute; inset: 0; transition: transform .5s cubic-bezier(.2,.7,.2,1); }
+.conveyor-back { top: 6px; transform: translate3d(calc(var(--px) * 18px), 0, -120px) scale(.8); transform-origin: 50% 0; opacity: .55; filter: blur(1.2px) saturate(.8); }
+.conveyor-back .conveyor-track { animation-duration: 80s; animation-direction: reverse; }
+.conveyor-back .conveyor-rail { top: 8px; }
+.conveyor-front { top: 44px; transform: translate3d(calc(var(--px) * -26px), 0, 0); }
+.conveyor-front .conveyor-rail { top: 8px; }
+.conveyor-front .garment-img { filter: drop-shadow(0 14px 10px color-mix(in oklab, var(--foreground) 20%, transparent)); }
+.conveyor-front .garment { transition: transform .3s; }
+.conveyor::after { content: ""; position: absolute; inset: auto 0 0; height: 40px; background: linear-gradient(transparent, color-mix(in oklab, var(--foreground) 6%, var(--card))); pointer-events: none; }
+
+.tilt { perspective: 900px; height: 100%; --rx: 0deg; --ry: 0deg; --gx: 50%; --gy: 50%; outline: none; border-radius: var(--radius); }
+.tilt-inner { position: relative; height: 100%; transform-style: preserve-3d; transform: rotateX(var(--rx)) rotateY(var(--ry)); transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s; border-radius: var(--radius); }
+.tilt:hover .tilt-inner, .tilt:focus-visible .tilt-inner, .tilt:focus-within .tilt-inner { transform: rotateX(var(--rx)) rotateY(var(--ry)) translateZ(14px) translateY(-4px); box-shadow: 0 22px 40px -18px color-mix(in oklab, var(--foreground) 35%, transparent); }
+.tilt:hover .tilt-inner { transition: transform .12s ease-out, box-shadow .35s; }
+.tilt-inner::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity .3s; background: radial-gradient(circle at var(--gx) var(--gy), color-mix(in oklab, var(--card) 55%, transparent), transparent 55%); }
+.tilt:hover .tilt-inner::after { opacity: 1; }
+.tilt:focus-visible { box-shadow: 0 0 0 3px var(--ring); }
+.tilt .service-item:hover { transform: none; }
+
+.depth-frame { position: relative; --p: 0; isolation: isolate; }
+.depth-front { position: relative; z-index: 2; transform: translate3d(0, calc(var(--p) * -10px), 0); }
+.depth-layer { position: absolute; z-index: 0; border-radius: var(--radius); pointer-events: none; will-change: transform; }
+.depth-layer-back { inset: 8% -18px -18px 18px; background: color-mix(in oklab, var(--primary) 16%, var(--muted)); transform: translate3d(0, calc(var(--p) * 30px), 0); }
+.depth-layer-mid { inset: -14px 24px 16% -14px; border: 2px solid color-mix(in oklab, var(--primary) 35%, transparent); transform: translate3d(0, calc(var(--p) * 18px), 0); }
+.depth-front > .portrait-media, .depth-front > .photo-frame { box-shadow: 0 30px 50px -28px color-mix(in oklab, var(--foreground) 45%, transparent); }
+
+.float-panel { position: absolute; z-index: 3; right: -22px; bottom: 28px; width: min(240px, 70%); padding: 16px 18px; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: 0 24px 40px -20px color-mix(in oklab, var(--foreground) 45%, transparent); transform: perspective(700px) rotateY(-8deg) rotateX(4deg) translate3d(0, calc(var(--p) * -22px), 30px); animation: floaty 6s ease-in-out infinite; }
+.float-panel p { font-size: 13px; line-height: 1.5; color: var(--muted-foreground); }
+.float-panel strong { display: block; font-family: var(--font-display); font-size: 15px; color: var(--foreground); margin-bottom: 4px; }
+.float-panel ul { margin-top: 8px; display: grid; gap: 4px; font-size: 13px; }
+@keyframes floaty { 0%,100% { translate: 0 0; } 50% { translate: 0 -8px; } }
+
+.price-row { transition: transform .25s cubic-bezier(.2,.7,.2,1), background-color .2s, padding .25s; border-radius: 6px; }
+.price-row:hover { transform: translateX(6px); background: color-mix(in oklab, var(--accent) 45%, transparent); padding-inline: 10px; }
+.price-row strong { transition: transform .25s; } .price-row:hover strong { transform: scale(1.06); }
+a[class*="rounded-lg"], button[class*="rounded-lg"] { transition: transform .18s cubic-bezier(.2,.7,.2,1), box-shadow .18s, background-color .15s; }
+a[class*="rounded-lg"]:hover, button[class*="rounded-lg"]:hover { transform: translateY(-2px); box-shadow: 0 10px 18px -10px color-mix(in oklab, var(--foreground) 40%, transparent); }
+a[class*="rounded-lg"]:active, button[class*="rounded-lg"]:active { transform: translateY(0) scale(.97); box-shadow: none; }
+
+@media (max-width: 860px) { .conveyor { height: 210px; } .conveyor-front { top: 34px; } .float-panel { right: 8px; bottom: 12px; } .depth-layer-back { inset: 8% -8px -10px 10px; } .depth-layer-mid { display: none; } }
+@media (hover: none) { .float-panel { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .conveyor-layer, .depth-front, .depth-layer, .tilt-inner, .float-panel { transform: none !important; } .price-row:hover { transform: none; } }
