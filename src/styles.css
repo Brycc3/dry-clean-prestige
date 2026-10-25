@@ -321,7 +321,7 @@ body { margin: 0; font-size: 16px; }
 .tilt:focus-visible { box-shadow: 0 0 0 3px var(--ring); }
 .tilt .service-item:hover { transform: none; }
 
-.depth-frame { position: relative; --p: 0; isolation: isolate; }
+.depth-frame { position: relative; --p: 0; isolation: isolate; margin-bottom: 30px; }
 .depth-front { position: relative; z-index: 2; transform: translate3d(0, calc(var(--p) * -10px), 0); }
 .depth-layer { position: absolute; z-index: 0; border-radius: var(--radius); pointer-events: none; will-change: transform; }
 .depth-layer-back { inset: 8% -18px -18px 18px; background: color-mix(in oklab, var(--primary) 16%, var(--muted)); transform: translate3d(0, calc(var(--p) * 30px), 0); }
