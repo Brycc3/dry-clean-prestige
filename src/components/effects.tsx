@@ -1,3 +1,4 @@
+import { DepthFrame } from '@/components/depth';
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { money } from '@/lib/business';
 
@@ -41,7 +42,7 @@ import shirtStained from '@/assets/shirt-stained.jpg';
 import shirtClean from '@/assets/shirt-clean.jpg';
 export function SteamPress() {
   return <figure className="m-0">
-    <div className="photo-card press-photo"><img src={pressPhoto} alt="A white dress shirt being pressed on a commercial garment press" width={1024} height={768} loading="lazy" decoding="async" /></div>
+    <DepthFrame><div className="photo-card press-photo"><img src={pressPhoto} alt="A white dress shirt being pressed on a commercial garment press" width={1024} height={768} loading="lazy" decoding="async" /></div></DepthFrame>
     <figcaption className="media-caption">Illustrative example · not photographed at this store</figcaption>
   </figure>;
 }
