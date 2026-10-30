@@ -40,9 +40,16 @@ export function useScrollDepth<T extends HTMLElement>() {
 /* Decorative depth layers behind a video/photo frame. Layers sit behind and outside the media, never over it. */
 export function DepthFrame({ children, className = '' }: { children: ReactNode; className?: string }) {
   const ref = useScrollDepth<HTMLDivElement>();
+  useEffect(() => {
+    const el = ref.current; if (!el) return;
+    if (reduced() || !('IntersectionObserver' in window)) { el.classList.add('is-in'); return; }
+    const io = new IntersectionObserver(([e]) => { if (e?.isIntersecting) { el.classList.add('is-in'); io.disconnect(); } }, { threshold: 0.25 });
+    io.observe(el); return () => io.disconnect();
+  }, [ref]);
   return <div ref={ref} className={`depth-frame ${className}`}>
+    <span className="depth-layer fabric-drape" aria-hidden />
     <span className="depth-layer depth-layer-back" aria-hidden />
     <span className="depth-layer depth-layer-mid" aria-hidden />
-    <div className="depth-front">{children}</div>
+    <div className="depth-front">{children}<span className="steam-veil" aria-hidden><i/><i/><i/></span></div>
   </div>;
 }

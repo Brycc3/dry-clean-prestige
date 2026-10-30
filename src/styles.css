@@ -344,3 +344,23 @@ a[class*="rounded-lg"]:active, button[class*="rounded-lg"]:active { transform: t
 @media (max-width: 860px) { .conveyor { height: 210px; } .conveyor-front { top: 34px; } .float-panel { right: 8px; bottom: 12px; } .depth-layer-back { inset: 8% -8px -10px 10px; } .depth-layer-mid { display: none; } }
 @media (hover: none) { .float-panel { animation: none; } }
 @media (prefers-reduced-motion: reduce) { .conveyor-layer, .depth-front, .depth-layer, .tilt-inner, .float-panel { transform: none !important; } .price-row:hover { transform: none; } }
+
+/* ===== Garment depth: steam reveal, fabric drape, dimensional cards ===== */
+.fabric-drape { inset: -22px -26px -22px -26px; z-index: -1; opacity: .55; background: repeating-linear-gradient(115deg, color-mix(in oklab, var(--primary) 10%, transparent) 0 10px, transparent 10px 22px), linear-gradient(160deg, color-mix(in oklab, var(--primary) 14%, transparent), transparent 70%); background-size: 200% 200%, 100% 100%; animation: fabric-flow 14s ease-in-out infinite alternate; transform: translate3d(0, calc(var(--p) * 40px), 0); filter: blur(.3px); border-radius: calc(var(--radius) * 2); }
+@keyframes fabric-flow { from { background-position: 0% 0%, 0 0; } to { background-position: 100% 60%, 0 0; } }
+.steam-veil { position: absolute; inset: 0; z-index: 5; pointer-events: none; overflow: hidden; border-radius: var(--radius); background: color-mix(in oklab, var(--background) 92%, transparent); opacity: 1; transition: opacity 1.6s ease .5s; }
+.steam-veil i { position: absolute; bottom: -30%; width: 70%; height: 90%; border-radius: 50%; background: radial-gradient(closest-side, color-mix(in oklab, var(--card) 95%, transparent), transparent); filter: blur(18px); }
+.steam-veil i:nth-child(1) { left: -10%; } .steam-veil i:nth-child(2) { left: 20%; } .steam-veil i:nth-child(3) { left: 45%; }
+.is-in .steam-veil { opacity: 0; background: transparent; }
+.is-in .steam-veil i { animation: steam-rise 2.2s ease-out forwards; }
+.is-in .steam-veil i:nth-child(2) { animation-delay: .15s; } .is-in .steam-veil i:nth-child(3) { animation-delay: .3s; }
+@keyframes steam-rise { to { transform: translateY(-120%) scale(1.4); opacity: 0; } }
+.service-3d { position: relative; overflow: hidden; transform-style: preserve-3d; }
+.service-weave { position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .4s; background: repeating-linear-gradient(45deg, color-mix(in oklab, var(--primary) 7%, transparent) 0 2px, transparent 2px 9px), repeating-linear-gradient(-45deg, color-mix(in oklab, var(--primary) 5%, transparent) 0 2px, transparent 2px 9px); }
+.tilt:hover .service-weave, .tilt:focus-visible .service-weave { opacity: 1; }
+.service-pop, .service-pop-sm { position: relative; transition: transform .35s cubic-bezier(.2,.7,.2,1); }
+.tilt:hover .service-pop, .tilt:focus-visible .service-pop { transform: translateZ(36px) translateY(-2px); }
+.tilt:hover .service-pop-sm, .tilt:focus-visible .service-pop-sm { transform: translateZ(18px); }
+@media (hover: none) { .tilt:hover .service-pop, .tilt:hover .service-pop-sm { transform: none; } }
+@media (max-width: 860px) { .fabric-drape { inset: -10px -8px; } }
+@media (prefers-reduced-motion: reduce) { .steam-veil { display: none; } .fabric-drape { animation: none !important; } .service-pop, .service-pop-sm { transform: none !important; } }
